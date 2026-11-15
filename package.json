@@ -1,0 +1,11 @@
+{
+  "name": "incubator-fullstack",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "start": "npm --prefix front start",
+    "build": "npm --prefix front run build",
+    "test": "npm --prefix front test",
+    "install:front": "npm --prefix front install"
+  }
+}
