@@ -2,11 +2,12 @@ import React, { ChangeEvent, useState } from 'react';
 import { FilterValue } from './App';
 
 type TodolistProps = {
+    id: string
     title: string
     tasks: Task[]
-    removeTask: (taskId: string) => void
+    removeTask: (todolistId: string, taskId: string) => void
     addTask: (taskTitle: string) => void
-    filterForTask: (value: FilterValue) => void
+    changeFilter: (value: FilterValue, todolistId: string) => void
     changeTaskStatus: (taskId: string, isDone: boolean) => void
     filter: FilterValue
 }
@@ -32,7 +33,7 @@ export const Todolist = (props: TodolistProps) => {
     ))
 
     const removeTaskHandler = (taskId: string) => {
-        props.removeTask(taskId)
+        props.removeTask(props.id, taskId)
     }
 
     const onAddTaskHandler = () => {
@@ -49,9 +50,9 @@ export const Todolist = (props: TodolistProps) => {
         setTitle(e.currentTarget.value)
     }
 
-    const onAllClickHandler = () => props.filterForTask('all')
-    const onActiveClickHandler = () => props.filterForTask('active')
-    const onCompletedClickHandler = () => props.filterForTask('completed')
+    const onAllClickHandler = () => props.changeFilter('all', props.id)
+    const onActiveClickHandler = () => props.changeFilter('active', props.id)
+    const onCompletedClickHandler = () => props.changeFilter('completed', props.id)
 
     return (
         <div>
